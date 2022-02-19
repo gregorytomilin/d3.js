@@ -1,0 +1,37 @@
+{
+  "name": "d3.js",
+  "version": "1.0.0",
+  "description": "USA States and their senators",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "USA",
+    "d3.js",
+    "senators"
+  ],
+  "author": "GT",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-js-import": "^1.0.6",
+    "gulp-sass": "^5.1.0",
+    "gulp-strip-css-comments": "^2.0.0",
+    "sass": "^1.49.7"
+  },
+  "dependencies": {
+    "d3": "^7.3.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-include": "^2.4.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^3.0.0"
+  }
+}

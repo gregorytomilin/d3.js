@@ -1,0 +1,75 @@
+@import 'base/reset';
+
+
+.usaStates{
+    display: flex;
+    gap: 10px;
+
+    height: 100vh;
+
+    &__map  {
+        flex-basis: 80%;
+
+        background: rgb(255, 63, 63);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg{
+            width: 80%;
+            // height: 100%;
+        }
+
+        svg path{
+            fill: rgb(149, 216, 255);
+            transition: all ease .2s;
+            stroke-width: 1;
+            stroke: white;
+            cursor: pointer;
+            &:hover{
+                fill: rgb(54, 255, 144);
+                stroke-width: 5;
+
+            }
+        }
+    }
+    &__senatorsList  {
+        flex-basis: 20%;
+        min-width: 300px;
+        padding: 10px;
+        overflow: hidden;
+        overflow-y: auto;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .senator{
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid rgb(204, 204, 204);
+            gap: 5px;
+            &__info{
+                word-break: break-word;
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+
+                a{
+                    color: blue;
+                }
+
+                &Title{
+                    font-size: 14px;
+                    color: rgb(158, 158, 158);
+                }
+            }
+        }
+
+    }
+
+}
