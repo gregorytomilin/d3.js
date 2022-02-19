@@ -105,19 +105,25 @@ function createSenatorInfo(stateSenators, state){
         div.classList.add('senator');
         div.innerHTML = `
             <div class="senator__info">
-            <span class="senator__infoTitle">Description:</span> ${item.description}<div>
+                <span class="senator__infoTitle">Description:</span>
+                ${item.description}
+            </div>
             <div class="senator__info">
-            <span class="senator__infoTitle">Party:</span>
-             ${item.party}<div>
+                <span class="senator__infoTitle">Party:</span>
+                ${item.party}
+             </div>
             <div class="senator__info">
-            <span class="senator__infoTitle">Senator_rank_label:</span>
-             ${item.senator_rank_label}<div>
+                <span class="senator__infoTitle">Senator_rank_label:</span>
+                ${item.senator_rank_label}
+             </div>
             <div class="senator__info">
-            <span class="senator__infoTitle">Website:</span>
-            <a href="${item.website}" target="_blank">${item.website}</a>
-            <div>
+                <span class="senator__infoTitle">Website:</span>
+                <a href="${item.website}" target="_blank">${item.website}</a>
+            </div>
             <div class="senator__info">
-            <span class="senator__infoTitle">Person.name:</span> ${item.person.name}<div>
+                <span class="senator__infoTitle">Person.name:</span>
+                ${item.person.name}
+            </div>
         `
         $senatorsList.appendChild(div);
     })
