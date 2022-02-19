@@ -8,6 +8,9 @@
     height: 100vh;
 
     &__map  {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
         flex-basis: 80%;
 
         background: rgb(255, 63, 63);
@@ -32,6 +35,12 @@
                 stroke-width: 5;
 
             }
+        }
+        .stateName{
+            font-size: 30px;
+            height: 40px;
+            color: white;
+            font-weight: 700;
         }
     }
     &__senatorsList  {

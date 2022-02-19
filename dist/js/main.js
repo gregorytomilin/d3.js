@@ -1,5 +1,5 @@
 let states, senators, statesNames,
-$senatorsList;
+$senatorsList, $stateName;
 
 async function getDetails(){
     states = await fetch('js/states.json').then(res => res.json());
@@ -19,6 +19,7 @@ getDetails();
 
 document.addEventListener('DOMContentLoaded', () => {
     $senatorsList = document.querySelector('.usaStates__senatorsList');
+    $stateName = document.querySelector('.stateName');
     //Width and height of map
     var width = 960;
     var height = 500;
@@ -71,7 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     getSenators(d.properties.name);
                 })
                 .on('mouseover', function (d) {
-                    d3.select(this)
+                    showNameOfState(d.properties.name)
+                })
+                .on('mouseout', function (d) {
+                    clearName()
                 })
 
 
@@ -88,14 +92,13 @@ function getSenators(stateName){
             stateSenators.push(item);
         }
     });
-    createSenatorInfo(stateSenators);
+    createSenatorInfo(stateSenators, stateName);
 
 }
-function createSenatorInfo(stateSenators){
+function createSenatorInfo(stateSenators, state){
     $senatorsList.innerHTML = '';
-    let stateName = statesNames.find(state => state[stateSenators[0]['state']])
     $senatorsList.innerHTML = `
-        <div class="stateName">Senators of${stateName}</div>
+        <div class="stateName">Senators of the ${state}</div>
     `
     stateSenators.forEach(item => {
         let div = document.createElement('div');
@@ -118,4 +121,11 @@ function createSenatorInfo(stateSenators){
         `
         $senatorsList.appendChild(div);
     })
+}
+
+function showNameOfState(stateName){
+    $stateName.innerHTML = `State ${stateName}`;
+}
+function clearName(){
+    $stateName.innerHTML = 'USA';
 }
