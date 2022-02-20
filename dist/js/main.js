@@ -1,6 +1,8 @@
 let states, senators, statesNames,
 $senatorsList, $stateName;
+// через $ объявляем переменные содержащие DOM элементы
 
+// получаем данные по штатам, сенаторам
 async function getDetails(){
     states = await fetch('js/states.json').then(res => res.json());
     senators = await fetch('js/senators.json').then(res => res.json());
@@ -20,42 +22,45 @@ getDetails();
 document.addEventListener('DOMContentLoaded', () => {
     $senatorsList = document.querySelector('.usaStates__senatorsList');
     $stateName = document.querySelector('.stateName');
-    //Width and height of map
-    var width = 960;
-    var height = 500;
+
+    const width = 960;
+    const height = 500;
 
     // D3 Projection
-    var projection = d3.geo.albersUsa()
-        .translate([width / 2, height / 2])
-        // translate to center of screen
-        .scale([1000]);
-    // scale things down so see entire US
 
-    // Define path generator
-    var path = d3.geo.path()
+    const projection = d3.geo.albersUsa()
+        .translate([width / 2, height / 2])
+        // цетровка по цетру экрана
+        .scale([1000]);
+    // масшатабирование по центру карты США
+
+    // Объявление генератора путей
+    const path = d3.geo.path()
     // path generator that will convert GeoJSON to SVG paths
+    // генератор paths конвертирует геоjson в svg paths
         .projection(projection);
         // tell path generator to use albersUsa projection
 
 
     //Создание svg и добавление в .usaStates__map
-    var svg = d3.select(".usaStates__map")
+    let svg = d3.select(".usaStates__map")
         .append("svg")
         // .attr("width", width)
         // .attr("height", height);
 
 
-           // Load GeoJSON data and merge with states data
+        // Загрузка gejson
         d3.json("js/states.json", function (json) {
-            // Bind the data to the SVG and create one path per GeoJSON feature
             svg
-            .attr("viewBox", '0 0 900 500')
+            .attr("viewBox", '0 0 960 500')
             .attr("x", '0px')
             .attr("y", '0px')
             .attr("xmlns", 'http://www.w3.org/2000/svg')
             // .attr("width", '100%')
             // .attr("height", '100%')
 
+
+            // Привязка данных к SVG
             svg.selectAll("path")
                 .data(json.features)
                 .enter()
@@ -64,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .attr("d", path)
                 .attr("id", (d)=>d.id)
 
+                // Стили присваиваем через CSS
                 // .style("stroke", "#fff")
                 // .style("stroke-width", "1")
                 // .style("fill", "rgb(54, 255, 144)")
@@ -71,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     d3.select(this)
                     getSenators(d.properties.name);
                 })
+                // Обработчики движения и действия мышью
                 .on('mouseover', function (d) {
                     showNameOfState(d.properties.name)
                 })
@@ -82,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 })
 
-
+// Получаем сенаторов штата по Названию штата
 function getSenators(stateName){
 
     let stateSenators = [];
@@ -95,6 +102,8 @@ function getSenators(stateName){
     createSenatorInfo(stateSenators, stateName);
 
 }
+
+// Создание DOM элементов с информацией о сенаторах штата
 function createSenatorInfo(stateSenators, state){
     $senatorsList.innerHTML = '';
     $senatorsList.innerHTML = `
@@ -129,6 +138,7 @@ function createSenatorInfo(stateSenators, state){
     })
 }
 
+// Вывод названия штата на onmouseover
 function showNameOfState(stateName){
     $stateName.innerHTML = `State ${stateName}`;
 }
